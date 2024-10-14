@@ -1,0 +1,36 @@
+{
+  "name": "quiz-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-visitor-counter": "^1.4.0",
+    "firebase": "^9.20.0",
+    "firebase-admin": "^11.7.0",
+    "firebase-functions": "^4.3.1",
+    "formidable": "^2.1.1",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.2.0",
+    "node-cache": "^5.1.2",
+    "nodemon": "^2.0.21",
+    "path": "^0.12.7",
+    "read-excel-file": "^5.6.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "sequelize": "^6.29.2",
+    "sequelize-cli": "^6.6.0",
+    "swagger-ui-express": "^4.6.2"
+  }
+}

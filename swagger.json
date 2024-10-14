@@ -1,0 +1,808 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Quiz development",
+    "description": "Quiz API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:9006",
+  "basePath": "/",
+  "paths": {
+    "/api/adminMaster/admin": {
+      "post": {
+        "summary": "Create Admin",
+        "tags": [
+          "Admin"
+        ],
+        "description": "Create new admin",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "adminName": "admin",
+              "password": "admin@123"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created or Already existing user."
+          }
+        }
+      }
+    },
+    "/api/adminMaster/adminLogin": {
+      "post": {
+        "summary": "Login Admin",
+        "tags": [
+          "Admin"
+        ],
+        "description": "Login",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "adminName": "admin",
+              "password": "admin@123"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created or Already existing user."
+          }
+        }
+      }
+    },
+    "/api/reg_otp/register": {
+      "post": {
+        "summary": "Create a User",
+        "tags": [
+          "Register"
+        ],
+        "description": "Create new user",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "name": "Veer",
+              "mobileNumber": 9087650312,
+              "dob": "09-03-1998",
+              "gender": "Male",
+              "district": "Madurai"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created or Already existing user."
+          }
+        }
+      }
+    },
+    "/api/reg_otp/getotp": {
+      "post": {
+        "summary": "Get OTP",
+        "tags": [
+          "Register"
+        ],
+        "description": "Get OTP",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "mobileNumber": 9087650312
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/reg_otp/login": {
+      "post": {
+        "summary": "Login",
+        "tags": [
+          "Register"
+        ],
+        "description": "OTP has been send into the Mobile Number.",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "mobileNumber": 9087650312
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/reg_otp/verifyotp": {
+      "post": {
+        "summary": "Verify OTP",
+        "tags": [
+          "Register"
+        ],
+        "description": "Verify OTP",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "mobileNumber": 9087654312,
+              "otp": "1234",
+              "key" :"signup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/reg_otp/getDistrict": {
+      "get": {
+        "tags": [
+          "Register"
+        ],
+        "summary": "District",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/district/getDistrict": {
+      "get": {
+        "tags": [
+          "District"
+        ],
+        "summary": "District",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/district/addDistrict": {
+      "post": {
+        "summary": "Create a district",
+        "tags": [
+          "District"
+        ],
+        "description": "Create district",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "districtName": "Tenkasi",
+              "isActive": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "District created successfully."
+          }
+        }
+      }
+    },
+    "/api/district/updateDistrict/{id}": {
+      "put": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "minimum": 1,
+            "description": "ID of save district that we want to update",
+            "type": "integer"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "districtName" : "Tenkasi",
+              "isActive" : true
+            }
+          }
+        ],
+        "tags": [
+          "District"
+        ],
+        "summary": "Update district",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/questionBank/getQuestions": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "userID": 16,
+              "mobileNumber" : 9080358869,
+              "language": "English",
+              "ageGroup": ""
+            }
+          }
+        ],
+        "tags": [
+          "Get Question"
+        ],
+        "summary": "Get Quiz Question",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/questionBank/addQuestions": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "type": "multiple-choice",
+              "prompt": "The output of the Data Definition Language is stored in the",
+              "options": [
+                "view table",
+                "schema ",
+                "metadata",
+                "all or the above."
+              ],
+              "answer": "metadata"
+            }
+          }
+        ],
+        "tags": [
+          "Get Question"
+        ],
+        "summary": "Get Quiz Question",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/questionBank/saveAnswer": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "quizID": 0,
+              "userID": 1,
+              "questionID": 3,
+              "questiontype": "Match the following",
+              "selectedAnswer": "answer 1, answer 2, answer 3, answer 4",
+              "isScored": true,
+              "score": 1
+            }
+          }
+        ],
+        "tags": [
+          "Get Question"
+        ],
+        "summary": "Add Quiz Answer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/questionBank/uploadQuestions": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "file",
+            "in": "formdata",
+            "required": true,
+            "type": "file",
+            "description" : "The file to upload."
+          },
+          {
+            "name": "language",
+            "in": "formdata",
+            "required": true,
+            "type": "string",
+            "description" : "Language select"
+          }
+        ],
+        "tags": [
+          "Get Question"
+        ],
+        "summary": "Upload Question",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/questionBank/unAttentedQuestions": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "array",
+            "example": [
+              {
+                "quizID": 0,
+                "userID" : 2,
+                "questionID": 3,
+                "questiontype" : "Match the following",
+                "selectedAnswer": "answer 1, answer 2, answer 3, answer 4",
+                "isScored": true,
+                "score": 1
+              },
+              {
+                  "quizID": 0,
+                  "userID" : 2,
+                  "questionID": 4,
+                  "questiontype" : "Match the following",
+                  "selectedAnswer": "answer 1, answer 2, answer 3, answer 4",
+                  "isScored": false,
+                  "score": 0
+              },
+              {
+                  "quizID": 0,
+                  "userID" : 2,
+                  "questionID": 5,
+                  "questiontype" : "Match the following",
+                  "selectedAnswer": "answer 1, answer 2, answer 3, answer 4",
+                  "isScored": true,
+                  "score": 1
+              },
+              {
+                  "quizID": 0,
+                  "userID" : 2,
+                  "questionID": 6,
+                  "questiontype" : "Match the following",
+                  "selectedAnswer": "answer 1, answer 2, answer 3, answer 4",
+                  "isScored": false,
+                  "score": 0
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "Get Question"
+        ],
+        "summary": "Add Quiz Bulk Answer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/questionBank/updateSaveAnswer/{id}": {
+      "put": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "minimum": 1,
+            "description": "ID of save answer that we want to update",
+            "type": "integer"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "questionID": 3,
+              "questiontype": "Match the following",
+              "selectedAnswer": "answer 1, answer 2, answer 3, answer 4",
+              "isScored": true,
+              "score": 1
+            }
+          }
+        ],
+        "tags": [
+          "Get Question"
+        ],
+        "summary": "Add Quiz Answer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/reg_otp/leaderBoard": {
+      "get": {
+        "tags": [
+          "Register"
+        ],
+        "summary": "Leader Board Score",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/scorSummary/addQuizSummary": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "userID": 16,
+              "mobileNumber": 9080358869,
+              "totalquestions": 15,
+              "score": 15,
+              "date": "10-04-2023",
+              "quizID": [
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Quiz Summary"
+        ],
+        "summary": "Add quiz score",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/scorSummary/quizSummary": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "userID" : 16,
+              "mobileNumber": 9080358869
+            }
+          }
+        ],
+        "tags": [
+          "Quiz Summary"
+        ],
+        "summary": "User Score based on Mobile number",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/scorSummary/updateQuizSummary": {
+      "put": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "quizID" : 83,
+              "userID": 16,
+              "mobileNumber": 9087650310
+            }
+          }
+        ],
+        "tags": [
+          "Quiz Summary"
+        ],
+        "summary": "User Score update based on quizID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/partner/addPartner": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "description": "Add partner Details",
+            "type": "object",
+            "example": {
+              "userID": 1,
+              "partnerName": "Rambo",
+              "partnerMobileNumber": 7890654321
+            }
+          }
+        ],
+        "tags": [
+          "Partnar"
+        ],
+        "summary": "Add Partnar",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/partner/deletePartner/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "minimum": 1,
+            "description": "ID of partnar that we want to delete",
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Partnar"
+        ],
+        "summary": "Delete Partnar",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/partner/getPartner": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Bearer token"
+          },
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "example": {
+              "userID": 1
+            }
+          }
+        ],
+        "tags": [
+          "Partnar"
+        ],
+        "summary": "Get Partner",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    },
+
+
+
+    "/api/preregister/addPreregister": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "description": "Add PreRegister Details",
+            "type": "object",
+            "example": {
+              "mobileNumber": 8870286908
+             
+            }
+          }
+        ],
+        "tags": [
+          "Pre  Register"
+        ],
+        "summary": "Add PreRegister",
+        "responses": {
+          "200": {
+            "description": "New PreRegister is created",
+            "schema": ""
+          }
+        }
+      }
+    },
+    "/api/preregister/getPreregister": {
+      "get": {
+        "tags": [
+          "Pre Register"
+        ],
+        "summary": "Get Preregister",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": ""
+          }
+        }
+      }
+    }
+
+
+
+
+
+
+
+  },
+  "definitions": "",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ]
+}
+
